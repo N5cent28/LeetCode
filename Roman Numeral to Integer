@@ -1,0 +1,36 @@
+class Solution:
+  def romanToInt(self, s: str) -> int:
+      """
+      :type s: str
+      :rtype: int
+      """
+      numeral_values = {
+      'I': 1,
+      'V': 5,
+      'X': 10,
+      'L': 50,
+      'C': 100,
+      'D': 500,
+      'M': 1000
+      }
+
+      total = 0
+      current_char = None
+      current_val = 0
+
+      for numeral in s:
+          prev_char = current_char
+          current_char = numeral
+          prev_val = current_val
+          current_val = numeral_values.get(numeral)
+          #print(f"Current_val is {current_val}")
+          #deal with subtracted values
+          if  current_val > prev_val:
+              total += (current_val - 2 * prev_val)
+          else:
+              #sum numeral values as they are seen
+              total += current_val
+          #print(f"Current total is {total}")
+      return total
+
+          
